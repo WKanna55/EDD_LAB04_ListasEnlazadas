@@ -223,6 +223,8 @@ class ListaEnlazada:
                     if self.cola.valor <= actual.valor:
                         self.cola = actual
                     swapped = True
+                elif actual.valor == siguiente.valor:
+                    self.cola = siguiente
                 previo = actual
                 actual = siguiente
 
