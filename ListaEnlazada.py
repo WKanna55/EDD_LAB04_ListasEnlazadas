@@ -228,18 +228,35 @@ class ListaEnlazada:
 
     def insertar_ordenadamente(self, valor):
         nuevo_nodo = Nodo(valor)
-
-        if not self.cabeza or valor <= self.cabeza.valor:
-            nuevo_nodo.siguiente = self.cabeza
+        if not self.cabeza:
             self.cabeza = nuevo_nodo
-            return
+            self.cola = self.cabeza
+            self.contador += 1
 
-        actual = self.cabeza
-        while actual.siguiente and valor > actual.siguiente.valor:
-            actual = actual.siguiente
+        elif self.cabeza == self.cola:
+            if valor <= self.cabeza.valor:
+                nuevo_nodo.siguiente = self.cola
+                self.cabeza = nuevo_nodo
+                self.contador += 1
+            else:
+                self.cabeza.siguiente = nuevo_nodo
+                self.cola = nuevo_nodo
+                self.contador += 1
+        else:
+            if valor <= self.cabeza.valor:
+                nuevo_nodo.siguiente = self.cabeza
+                self.cabeza = nuevo_nodo
+                self.contador += 1
+                return
+            actual = self.cabeza
+            while actual.siguiente and valor > actual.siguiente.valor:
+                actual = actual.siguiente
 
-        nuevo_nodo.siguiente = actual.siguiente
-        actual.siguiente = nuevo_nodo
+            nuevo_nodo.siguiente = actual.siguiente
+            actual.siguiente = nuevo_nodo
+            if valor >= self.cola.valor:
+                self.cola = nuevo_nodo
+            self.contador += 1
 
     """Ejercicio 09: Insercion ordenada (fin)"""
 
