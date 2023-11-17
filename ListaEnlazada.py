@@ -217,8 +217,11 @@ class ListaEnlazada:
                         previo.siguiente = siguiente
                     else:
                         self.cabeza = siguiente
+
                     actual.siguiente = siguiente.siguiente
                     siguiente.siguiente = actual
+                    if self.cola.valor <= actual.valor:
+                        self.cola = actual
                     swapped = True
                 previo = actual
                 actual = siguiente
