@@ -1,7 +1,5 @@
-# Lista enlazada implementacion
-
 """
-Ejercicio 01: implementacion básica (inicio)
+Ejercicio 01: implementacion básica de lista enlazada (inicio)
 """
 class Nodo:
     def __init__(self, valor):
@@ -223,7 +221,7 @@ class ListaEnlazada:
                     if self.cola.valor <= actual.valor:
                         self.cola = actual
                     swapped = True
-                elif actual.valor == siguiente.valor:
+                elif actual.valor <= siguiente.valor:
                     self.cola = siguiente
                 previo = actual
                 actual = siguiente
